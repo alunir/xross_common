@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import os
 from setuptools import setup, find_packages
 
 try:
@@ -10,6 +11,8 @@ except(IOError, ImportError):
 
 with open("LICENSE") as f:
     license = f.read()
+
+os.environ.update({"CONFIG_DIR": "tests"})
 
 setup(
     name='xross_common',
