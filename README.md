@@ -1,4 +1,5 @@
 # xross_common
+[![CircleCI](https://circleci.com/gh/alunir/xross_common.svg?style=svg)](https://circleci.com/gh/alunir/xross_common)
 
 This repo contains common library for alunir project.
 
