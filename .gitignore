@@ -1,6 +1,9 @@
 # Created by .ignore support plugin (hsz.mobi)
 .python-version
+
+# TODO: remove docs after enriched docs
 docs/*
+
 dist/*
 build/*
 **/__pycache__/**

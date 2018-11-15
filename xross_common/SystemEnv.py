@@ -21,7 +21,7 @@ class SystemEnv(Enum):
     def create():
         if "REAL=True" in sys.argv:
             return SystemEnv.PROD
-        if 'pycharm' in sys.argv[0]:
+        if 'pycharm' in sys.argv[0] or 'setup.py' in sys.argv[0]:
             return SystemEnv.UNITTEST
         if ast.literal_eval(os.environ.get("IS_DOCKER", 'False')):
             return SystemEnv.DOCKER
