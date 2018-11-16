@@ -2,18 +2,16 @@ version: 2
 jobs:
   build:
     docker:
-      - image: alunir/laurel-build:latest
+      - image: jimako1989/laurel-build:latest
     steps:
       - checkout
-      - run:
-          - python setup.py build
+      - run: python setup.py build
   test:
     docker:
-      - image: alunir/laurel-build:latest
+      - image: jimako1989/laurel-build:latest
     steps:
       - checkout
-      - run:
-          - python setup.py test
+      - run: python setup.py test
 workflows:
   version: 2
   build_and_test:
