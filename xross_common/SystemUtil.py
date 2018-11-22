@@ -42,7 +42,7 @@ class SystemUtil(metaclass=Singleton):
         self.cfg = {}
         cfg_parser = configparser.ConfigParser()
         base_dir = os.path.dirname(__file__) + "/../"
-        cfg_path = os.path.normpath(base_dir + os.environ.get("CONFIG_DIR"))
+        cfg_path = os.path.normpath(base_dir + os.environ.get("CONFIG_PATH"))
         self.ini_files = [cfg_path + "/" + f for f in os.listdir(cfg_path) if f.endswith(".ini")]
         if self.ini_files is []:
             raise ValueError("Failed to load ini files. see cfg_path %s" % cfg_path)
@@ -53,11 +53,11 @@ class SystemUtil(metaclass=Singleton):
         else:
             self.cfg.update(to_munch(cfg_parser["TEST_DEFAULT_GLOBAL_CONFIG"]))
 
-        # MEMO: arguments should be override to config.ini.
+        # MEMO: arguments should be override to config.
         self.cfg.update(args_parser(sys.argv[1:]))
 
         if self.env.is_local():
-            self.set_env("DOCKER_DIST_DIR", os.path.normpath(os.path.dirname(__file__) + "/../../../"))
+            self.set_env("DOCKER_DIST_DIR", os.path.normpath(base_dir + "../../"))
 
     def get_sysprop_or_env(self, key, type=str):
         """
