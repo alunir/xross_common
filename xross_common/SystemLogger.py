@@ -39,7 +39,7 @@ class SystemLogger(logging.getLoggerClass()):
         handlers.append(self.setup_stream_handler())
         handlers.append(self.test_handler)
 
-        if not self.cfg.env.is_unittest() and self.cfg.get_sysprop_or_env("IS_OUTPUT_TO_LOGFILE", bool):
+        if not self.cfg.env.is_unittest() and self.cfg.get_env("IS_OUTPUT_TO_LOGFILE", default=False, type=bool):
             handlers.append(self.setup_file_handler())
 
         if self.cfg.env.is_real():
@@ -67,7 +67,7 @@ class SystemLogger(logging.getLoggerClass()):
             prefix = "DEMO:"
         format_string = prefix + self.format_string
 
-        self.levelno = getattr(logging, self.cfg.get_sysprop_or_env("LOGGER_LEVEL"))
+        self.levelno = getattr(logging, self.cfg.get_env("LOGGER_LEVEL", "DEBUG"))
         stream_handler.setLevel(self.levelno)
         stream_handler.setFormatter(logging.Formatter(format_string))
 
@@ -76,14 +76,14 @@ class SystemLogger(logging.getLoggerClass()):
     def setup_file_handler(self):
         # see http://www.python.ambitious-engineer.com/archives/725
         module_dir = self.cfg.get_env("DOCKER_DIST_DIR")
-        logfile_dir = module_dir + '/' + self.cfg.get_sysprop("LOGFILE_PATH")
+        logfile_dir = module_dir + '/' + self.cfg.get_env("LOGFILE_PATH", "logs")
         os.makedirs(logfile_dir, exist_ok=True)
         if module_dir is None:
             raise Exception("setenv.sh seems not to be set.")
-        logfile_name = 'latest' + self.cfg.get_sysprop("LOGFILE_NAME_EXT")
+        logfile_name = 'latest' + self.cfg.get_env("LOGFILE_NAME_EXT", ".log")
         file_handler = logging.handlers.WatchedFileHandler(logfile_dir + '/' + logfile_name, mode='a')
 
-        file_handler.setLevel(getattr(logging, self.cfg.get_sysprop("LOGFILE_LEVEL")))
+        file_handler.setLevel(getattr(logging, self.cfg.get_env("LOGFILE_LEVEL", "DEBUG")))
         file_handler.setFormatter(self.formatter)
         return file_handler
 

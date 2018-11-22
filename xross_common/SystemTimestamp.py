@@ -6,11 +6,12 @@ import dateutil.tz
 
 from xross_common.SystemUtil import SystemUtil
 
+FORMAT_DEFAULT = "%Y-%m-%d %H:%M:%S.%f"
 FORMAT_ISO8601 = "%Y-%m-%dT%H:%M:%S.%fZ"
 
 
 class SystemTimestamp:
-    timestamp_format = SystemUtil().get_sysprop("DATE_FORMAT")
+    timestamp_format = SystemUtil().get_env("DATE_FORMAT", default=FORMAT_DEFAULT)
 
     def __init__(self, *args):
         self.timestamp = ()

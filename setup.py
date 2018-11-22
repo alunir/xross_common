@@ -12,7 +12,12 @@ except(IOError, ImportError):
 with open("LICENSE") as f:
     license = f.read()
 
-os.environ.update({"CONFIG_DIR": "tests"})
+with open(".env") as f:
+    line = f.readline()
+    while line:
+        k, v = line.split("\n")[0].split("=")
+        os.environ.update({k: v})
+        line = f.readline()
 
 setup(
     name='xross_common',
