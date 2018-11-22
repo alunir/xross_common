@@ -1,14 +1,26 @@
 version: 2
 jobs:
-  build:
+  build_35:
     docker:
-      - image: jimako1989/laurel-build:latest
+      - image: python:3.5
     steps:
       - checkout
       - run: python setup.py build
-  test:
+  test_35:
     docker:
-      - image: jimako1989/laurel-build:latest
+      - image: python:3.5
+    steps:
+      - checkout
+      - run: python setup.py test
+  build_37:
+    docker:
+      - image: python:3.7
+    steps:
+      - checkout
+      - run: python setup.py build
+  test_37:
+    docker:
+      - image: python:3.7
     steps:
       - checkout
       - run: python setup.py test
@@ -16,5 +28,7 @@ workflows:
   version: 2
   build_and_test:
     jobs:
-      - build
-      - test
+      - build_35
+      - test_35
+      - build_37
+      - test_37
