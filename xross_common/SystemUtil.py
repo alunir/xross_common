@@ -138,7 +138,7 @@ class SystemUtil(metaclass=Singleton):
             if val is None:
                 val = False
             else:
-                val = ast.literal_eval(val)
+                val = ast.literal_eval(str(val))
         return val
 
     @staticmethod

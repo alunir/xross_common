@@ -134,6 +134,11 @@ class TestSystemUtil(XrossTestBase):
         self.assertFalse(self.cfg.env.is_real())
         self.assertNotEqual(SystemEnv.UNKNOWN, self.cfg.env)
 
+    def test_get_env_written_nowhere(self):
+        self.assertIsNone(self.cfg.get_env("WRITTEN_NOWHERE"))
+        self.assertFalse(self.cfg.get_env("WRITTEN_NOWHERE", default=False, type=bool))
+        self.assertFalse(self.cfg.get_env("WRITTEN_NOWHERE", default="False", type=bool))
+
 
 if __name__ == '__main__':
     TestSystemUtil.do_test()
