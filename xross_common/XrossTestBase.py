@@ -10,7 +10,7 @@ from xross_common.SystemUtil import SystemUtil
 
 
 class XrossTestBase(unittest.TestCase):
-    _logger, _test_handler = SystemLogger("TestBase").get_logger()
+    _logger, _test_handler = SystemLogger("XrossTestBase").get_logger()
     _logger.setLevel(logging.DEBUG)
     cxt = None
 
