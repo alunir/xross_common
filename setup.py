@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
-from setuptools import setup, find_packages
+from setuptools import setup
 
 try:
     import pypandoc
@@ -21,7 +21,7 @@ with open(".env") as f:
 
 setup(
     name='xross_common',
-    version='1.0',
+    version='1.0.2',
     description='Common library for alunir',
     long_description=long_description,
     author='jimako1989',
@@ -37,6 +37,6 @@ setup(
         'pypandoc==1.4',
         'sphinx'
     ],
-    packages=find_packages(exclude=('tests', 'docs')),
+    packages=['xross_common'],
     test_suite='tests'
 )

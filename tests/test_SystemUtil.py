@@ -139,6 +139,10 @@ class TestSystemUtil(XrossTestBase):
         self.assertFalse(self.cfg.get_env("WRITTEN_NOWHERE", default=False, type=bool))
         self.assertFalse(self.cfg.get_env("WRITTEN_NOWHERE", default="False", type=bool))
 
+    def test_update_config2(self):
+        self.cfg.update(os.path.dirname(__file__) + "/test_SystemUtil")
+        self.assertEqual("True", self.cfg.get_sysprop_or_env('TEST_READ_CONFIG2'))
+
 
 if __name__ == '__main__':
     TestSystemUtil.do_test()

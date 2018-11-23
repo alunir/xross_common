@@ -1,14 +1,20 @@
 version: 2
 jobs:
-  build:
+  test_35:
     docker:
-      - image: jimako1989/laurel-build:latest
+      - image: python:3.5
+        environment:
+          DOCKER_DIST_DIR: /root/project
+          CONFIG_PATH: tests
     steps:
       - checkout
-      - run: python setup.py build
-  test:
+      - run: python setup.py test
+  test_37:
     docker:
-      - image: jimako1989/laurel-build:latest
+      - image: python:3.7
+        environment:
+          DOCKER_DIST_DIR: /root/project
+          CONFIG_PATH: tests
     steps:
       - checkout
       - run: python setup.py test
@@ -16,5 +22,7 @@ workflows:
   version: 2
   build_and_test:
     jobs:
-      - build
-      - test
+      - build_35
+      - test_35
+      - build_37
+      - test_37

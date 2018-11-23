@@ -36,13 +36,19 @@ def args_parser(lst):
 
 class SystemUtil(metaclass=Singleton):
     env = SystemEnv.create()
+    cfg = {}
+    ini_files = []
 
     def __init__(self):
         super().__init__()
-        self.cfg = {}
+        base_dir = os.path.normpath(os.path.dirname(__file__) + "/../")
+        if self.env.is_local() and not self.is_env("DOCKER_DIST_DIR"):
+            self.set_env("DOCKER_DIST_DIR", base_dir)
+        self.update(os.environ.get("DOCKER_DIST_DIR") + "/" + os.environ.get("CONFIG_PATH"))
+
+    def update(self, full_path):
         cfg_parser = configparser.ConfigParser()
-        base_dir = os.path.dirname(__file__) + "/../"
-        cfg_path = os.path.normpath(base_dir + os.environ.get("CONFIG_PATH"))
+        cfg_path = os.path.normpath(full_path)
         self.ini_files = [cfg_path + "/" + f for f in os.listdir(cfg_path) if f.endswith(".ini")]
         if self.ini_files is []:
             raise ValueError("Failed to load ini files. see cfg_path %s" % cfg_path)
@@ -55,9 +61,6 @@ class SystemUtil(metaclass=Singleton):
 
         # MEMO: arguments should be override to config.
         self.cfg.update(args_parser(sys.argv[1:]))
-
-        if self.env.is_local():
-            self.set_env("DOCKER_DIST_DIR", os.path.normpath(base_dir + "../../"))
 
     def get_sysprop_or_env(self, key, type=str):
         """
@@ -165,9 +168,12 @@ class SystemUtil(metaclass=Singleton):
         :param key: str
         :return: void
         """
-        if str(key) not in os.environ:
+        if not self.is_env(key):
             raise ValueError("ENVIRONMENT VALUES doesn't contain key : " + str(key))
         os.environ.pop(str(key))
+
+    def is_env(self, key: str) -> bool:
+        return str(key) in os.environ
 
     # TODO: Implement Global Config Order
     @DeprecationWarning

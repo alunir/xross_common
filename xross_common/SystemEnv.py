@@ -21,10 +21,11 @@ class SystemEnv(Enum):
     def create():
         if "REAL=True" in sys.argv:
             return SystemEnv.PROD
+        if ast.literal_eval(os.environ.get("IS_DOCKER", 'False'))\
+                or ast.literal_eval(os.environ.get("CIRCLECI", 'False').capitalize()):
+            return SystemEnv.DOCKER
         if 'pycharm' in sys.argv[0] or 'setup.py' in sys.argv[0]:
             return SystemEnv.UNITTEST
-        if ast.literal_eval(os.environ.get("IS_DOCKER", 'False')):
-            return SystemEnv.DOCKER
         if ast.literal_eval(os.environ.get("IS_LOCAL", 'False')):
             return SystemEnv.LOCAL
         # TODO: Jupyter notebook is used for investigating API as prod, but was UNKNOWN.
