@@ -6,32 +6,31 @@ from xross_common.SystemLogger import SystemLogger
 
 class SystemContext(metaclass=Singleton):
     logger, test_handler = SystemLogger("SystemContext").get_logger()
+    debug = False
+    context = {}
 
-    def __init__(self):
-        pass
+    def __init__(self, debug=False):
+        self.debug = debug
 
-    def set_field(self, key, field):
-        """
-        :param key: str
-        :param field: something
-        :return: field
-        """
+    def set(self, key: str, field: object) -> object:
         setattr(self, str(key).lower(), field)
+        if self.debug:
+            self.context.update({str(key).lower(): field})
+            self.logger.debug("set:%s" % self.context)
         return field
 
-    def get_field(self, key, default=0):
-        """
-        :param key: str
-        :param default: int
-        :return: field
-        """
+    def get(self, key: str, default: object = None):
+        if self.debug:
+            self.logger.debug("get:%s" % self.context)
+            self.context.get(str(key).lower(), default)
         return getattr(self, str(key).lower(), default)
 
-    def increment_field(self, key):
-        """
-        :param key: str
-        :return: field
-        """
-        new_val = self.get_field(key) + 1
-        self.set_field(key, new_val)
+    def get_int(self, key: str, default: int = None) -> int:
+        if not str(self.get(key)).isdecimal():
+            raise TypeError("%s is not decimal" % key)
+        return self.get(key, default)
+
+    def increment(self, key: str, delta: int = 1) -> int:
+        new_val = int(self.get_int(key)) + delta
+        self.set(key, new_val)
         return new_val
