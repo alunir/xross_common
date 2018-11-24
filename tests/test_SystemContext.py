@@ -20,10 +20,10 @@ class TestSystemContext(XrossTestBase):
 
     def test_set(self):
         # action
-        self.cxt.set("HOGEMANAGER", HOGEMANAGER)
+        self.cxt.set({"hogemanager": HOGEMANAGER})
 
         # assert
-        self.assertTrue(hasattr(self.cxt, "hogemanager"))
+        self.assertTrue(hasattr(self.cxt, "HOGEMANAGER"))
 
     def test_get(self):
         # setup
@@ -34,6 +34,39 @@ class TestSystemContext(XrossTestBase):
 
         # assert
         self.assertEqual("HOGEMANAGER", str(mgr.__name__))
+
+    def test_has(self):
+        # setup
+        self.test_set()
+
+        # action
+        result = self.cxt.has("HOGEMANAGER")
+        result2 = self.cxt.has("HOGEMANAGER2")
+
+        # assert
+        self.assertTrue(result)
+        self.assertFalse(result2)
+
+    def test_pop(self):
+        # setup
+        self.test_set()
+
+        # action
+        result = self.cxt.pop("HOGEMANAGER")
+
+        # assert
+        self.assertEqual(result, HOGEMANAGER)
+        self.assertEqual("SystemContext{}", str(self.cxt))
+
+    def test_clear(self):
+        # setup
+        self.test_set()
+
+        # action
+        self.cxt.clear()
+
+        # assert
+        self.assertEqual("SystemContext{}", str(self.cxt))
 
     def test_get_mgr_fail(self):
         # setup
@@ -49,7 +82,7 @@ class TestSystemContext(XrossTestBase):
         PARAM_KEY = "hoge"
 
         # setup
-        self.cxt.set(PARAM_KEY, 99)
+        self.cxt.set({PARAM_KEY: 99})
 
         # action
         self.cxt.increment(PARAM_KEY)
