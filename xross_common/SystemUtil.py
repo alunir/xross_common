@@ -8,6 +8,7 @@ import configparser
 from munch import Munch
 from xross_common.DesignPattern import Singleton
 from xross_common.SystemEnv import SystemEnv
+from xross_common.SystemContext import SystemContext
 # To avoid the circular reference, SystemLogger cannot be imported. This class is compiled at first.
 
 
@@ -31,12 +32,13 @@ def args_parser(lst):
             continue
         key, value = e.split("=")
         result.update({key: value})
-    return Munch(result)
+    # return Munch(result)
+    return result
 
 
 class SystemUtil(metaclass=Singleton):
     env = SystemEnv.create()
-    cfg = {}
+    cfg = SystemContext()
     ini_files = []
 
     def __init__(self):
@@ -55,12 +57,12 @@ class SystemUtil(metaclass=Singleton):
         cfg_parser.read(self.ini_files)
 
         if self.env.is_real():
-            self.cfg.update(to_munch(cfg_parser["DEFAULT_GLOBAL_CONFIG"]))
+            self.cfg.set(cfg_parser["DEFAULT_GLOBAL_CONFIG"])
         else:
-            self.cfg.update(to_munch(cfg_parser["TEST_DEFAULT_GLOBAL_CONFIG"]))
+            self.cfg.set(cfg_parser["TEST_DEFAULT_GLOBAL_CONFIG"])
 
         # MEMO: arguments should be override to config.
-        self.cfg.update(args_parser(sys.argv[1:]))
+        self.cfg.set(args_parser(sys.argv[1:]))
 
     def get_sysprop_or_env(self, key, type=str):
         """
@@ -89,9 +91,9 @@ class SystemUtil(metaclass=Singleton):
         :param key: str
         :return: str
         """
-        if str(key).upper() not in self.cfg:
+        if not self.cfg.has(key):
             return None
-        val = self.cfg.get(str(key), default)
+        val = self.cfg.get(str(key), default=default)
         if type == dict:
             if "{" in val and "}" in val:
                 val = json.loads(val.replace("'", "\""))
@@ -119,7 +121,7 @@ class SystemUtil(metaclass=Singleton):
             raise TypeError("key is not str but was " + str(type(key)))
         if type(value) is not str:
             raise TypeError("value is not str but was " + str(type(value)))
-        self.cfg.update({key: value})
+        self.cfg.set({key: value})
 
     def remove_sysprop(self, key):
         """
@@ -200,4 +202,4 @@ class SystemUtil(metaclass=Singleton):
         """
         :return: void
         """
-        self.cfg = Munch({})
+        self.cfg.clear()
