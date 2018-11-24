@@ -21,7 +21,7 @@ class TestSystemUtil(XrossTestBase):
 
     def test_show_sysprop(self):
         self.cfg.clear_gcfg_for_test()
-        self.assertEqual("Munch({})", str(self.cfg.get_all_sysprop()))
+        self.assertEqual("SystemContext{}", str(self.cfg.get_all_sysprop()))
 
     def test_set_sysprop(self):
         # setup
@@ -31,7 +31,7 @@ class TestSystemUtil(XrossTestBase):
         self.cfg.set_sysprop(TEST_KEY_PARAM, TEST_VALUE_PARAM)
 
         # assert
-        self.assertEqual(TEST_VALUE_PARAM, self.sysprop[TEST_KEY_PARAM])
+        self.assertEqual(TEST_VALUE_PARAM, self.sysprop.get(TEST_KEY_PARAM))
 
     def test_get_sysprop(self):
         # setup
@@ -50,7 +50,7 @@ class TestSystemUtil(XrossTestBase):
         self.cfg.set_sysprop(TEST_KEY_PARAM_DICT, TEST_VALUE_PARAM_DICT)
 
         # assert
-        self.assertEqual(TEST_VALUE_PARAM_DICT, self.sysprop[TEST_KEY_PARAM_DICT])
+        self.assertEqual(TEST_VALUE_PARAM_DICT, self.sysprop.get(TEST_KEY_PARAM_DICT))
 
         # action/assert
         self.assertEqual({'MCO/BTC': 0.00002, 'BNB/BTC': 0.000001}, self.cfg.get_sysprop(TEST_KEY_PARAM_DICT, type=dict))
@@ -65,7 +65,7 @@ class TestSystemUtil(XrossTestBase):
         self.cfg.set_sysprop(TEST_KEY_PARAM_PACK, TEST_VALUE_PARAM_PACK)
 
         # assert
-        self.assertEqual(TEST_VALUE_PARAM_PACK, self.sysprop[TEST_KEY_PARAM_PACK])
+        self.assertEqual(TEST_VALUE_PARAM_PACK, self.sysprop.get(TEST_KEY_PARAM_PACK))
 
         # action/assert
         self.assertEqual(['5', '1'], self.cfg.get_sysprop(TEST_KEY_PARAM_PACK, type=dict))
@@ -77,10 +77,8 @@ class TestSystemUtil(XrossTestBase):
         self.cfg.remove_sysprop(TEST_KEY_PARAM)
 
         # teardown
-        with self.assertRaises(KeyError):
-            expected_none = self.sysprop[TEST_KEY_PARAM]
-            self.assertEqual(None, expected_none)
-            self.fail()
+        expected_none = self.sysprop.get(TEST_KEY_PARAM)
+        self.assertEqual(None, expected_none)
 
     def test_set_env(self):
         # action
