@@ -26,6 +26,7 @@ class SystemEnv(Enum):
             return SystemEnv.DOCKER
         if 'pycharm' in sys.argv[0] or 'setup.py' in sys.argv[0]:
             return SystemEnv.UNITTEST
+        # MEMO: SystemEnv.LOCAL on 'make test'
         if ast.literal_eval(os.environ.get("IS_LOCAL", 'False')):
             return SystemEnv.LOCAL
         # TODO: Jupyter notebook is used for investigating API as prod, but was UNKNOWN.
@@ -42,4 +43,4 @@ class SystemEnv(Enum):
         return self is SystemEnv.UNITTEST
 
     def is_local(self):
-        return (self is SystemEnv.LOCAL) or (self is SystemEnv.UNITTEST)
+        return self is SystemEnv.LOCAL
