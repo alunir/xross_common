@@ -40,11 +40,40 @@ class TestSystemLogger(XrossTestBase):
 
         # assert
         self.assertEqual(
-            ['Loaded SystemLogger for TestSystemLogger; LOGGER_LEVEL:DEBUG',
-             'AlgoProcess is starting.',
+            ['AlgoProcess is starting.',
              'hoge',
              'AlgoProcess is stopped.'],
             self.test_handler.formatted)
+
+    def test_custom_log(self):
+        self.logger.trace("TRACE log is available.")
+        self.assertEqual(
+            ['Loaded SystemLogger LOGGER_LEVEL:DEBUG'],
+            self.test_handler.formatted
+        )
+
+        self.logger.verbose("VERBOSE log is available.")
+        self.assertEqual(
+            ['Loaded SystemLogger LOGGER_LEVEL:DEBUG', 'VERBOSE log is available.'],
+            self.test_handler.formatted
+        )
+
+    def test_custom_log_set_logger_level(self):
+        logger, test_handler = SystemLogger("TestSystemLogger", level="TRACE").get_logger()
+        logger.trace("TRACE log is available.")
+
+        self.assertEqual(
+            ['Loaded SystemLogger LOGGER_LEVEL:TRACE', 'TRACE log is available.'],
+            test_handler.formatted
+        )
+
+        logger.verbose("VERBOSE log is available.")
+        self.assertEqual(
+            ['Loaded SystemLogger LOGGER_LEVEL:TRACE',
+             'TRACE log is available.',
+             'VERBOSE log is available.'],
+            test_handler.formatted
+        )
 
 
 if __name__ == '__main__':
