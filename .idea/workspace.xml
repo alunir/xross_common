@@ -3,8 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="f7f45c16-cf14-47d9-95bb-d84aa0885646" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_SystemContext.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_SystemContext.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xross_common/SystemContext.py" beforeDir="false" afterPath="$PROJECT_DIR$/xross_common/SystemContext.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_SystemLogger.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_SystemLogger.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xross_common/SystemLogger.py" beforeDir="false" afterPath="$PROJECT_DIR$/xross_common/SystemLogger.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,13 +17,14 @@
     <session id="283793722">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="6" />
+          <entry key="project.closed" value="7" />
           <entry key="project.open.time.1" value="2" />
           <entry key="project.open.time.11" value="2" />
+          <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.4" value="1" />
           <entry key="project.open.time.6" value="1" />
-          <entry key="project.opened" value="7" />
+          <entry key="project.opened" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -30,25 +32,25 @@
           <entry key="LICENSE" value="2" />
           <entry key="Makefile" value="3" />
           <entry key="bat" value="1" />
-          <entry key="env" value="3" />
+          <entry key="env" value="6" />
           <entry key="gitignore" value="5" />
           <entry key="in" value="2" />
           <entry key="ini" value="7" />
-          <entry key="md" value="8" />
-          <entry key="py" value="59" />
+          <entry key="md" value="9" />
+          <entry key="py" value="74" />
           <entry key="rst" value="2" />
           <entry key="txt" value="1" />
-          <entry key="yml" value="4" />
+          <entry key="yml" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Git file" value="5" />
-          <entry key="Markdown" value="8" />
-          <entry key="PLAIN_TEXT" value="19" />
-          <entry key="Python" value="59" />
+          <entry key="Markdown" value="9" />
+          <entry key="PLAIN_TEXT" value="22" />
+          <entry key="Python" value="74" />
           <entry key="ReST" value="2" />
-          <entry key="YAML" value="4" />
+          <entry key="YAML" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -59,7 +61,7 @@
           <entry key="gitignore" value="97" />
           <entry key="ini" value="4" />
           <entry key="md" value="781" />
-          <entry key="py" value="2315" />
+          <entry key="py" value="4560" />
           <entry key="txt" value="80" />
           <entry key="yml" value="488" />
         </counts>
@@ -69,7 +71,7 @@
           <entry key="Git file" value="97" />
           <entry key="Markdown" value="781" />
           <entry key="PLAIN_TEXT" value="175" />
-          <entry key="Python" value="2315" />
+          <entry key="Python" value="4560" />
           <entry key="YAML" value="488" />
         </counts>
       </usages-collector>
@@ -78,62 +80,45 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/xross_common/SystemUtil.py">
+        <entry file="file://$PROJECT_DIR$/xross_common/SystemEnv.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="82">
-              <caret line="171" column="52" selection-start-line="171" selection-start-column="52" selection-end-line="171" selection-end-column="52" />
-              <folding>
-                <element signature="e#43#52#0" expanded="true" />
-                <marker date="1542969692436" expanded="true" signature="1384:1385" ph="..." />
-                <marker date="1542969692436" expanded="true" signature="5393:5437" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/test_SystemContext.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="172">
-              <caret line="66" column="18" lean-forward="true" selection-start-line="66" selection-start-column="18" selection-end-line="66" selection-end-column="18" />
-              <folding>
-                <marker date="1543016415821" expanded="true" signature="499:529" ph="..." />
-                <marker date="1543016415821" expanded="true" signature="1223:1232" ph="..." />
-              </folding>
+            <state relative-caret-position="150">
+              <caret line="13" column="41" lean-forward="true" selection-start-line="13" selection-start-column="41" selection-end-line="13" selection-end-column="41" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/xross_common/SystemContext.py">
+        <entry file="file://$PROJECT_DIR$/xross_common/SystemLogger.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="23" column="32" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="32" />
+            <state relative-caret-position="301">
+              <caret line="76" lean-forward="true" selection-start-line="76" selection-end-line="76" />
               <folding>
-                <marker date="1543016451138" expanded="true" signature="673:678" ph="..." />
-                <marker date="1543016451138" expanded="true" signature="925:1071" ph="..." />
+                <element signature="e#224#233#0" expanded="true" />
+                <marker date="1544617425304" expanded="true" signature="2940:3299" ph="..." />
+                <marker date="1544617425304" expanded="true" signature="3559:3564" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/xross_common/SystemEnv.py">
+        <entry file="file://$PROJECT_DIR$/xross_common/SystemUtil.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="24" column="84" selection-start-line="24" selection-start-column="84" selection-end-line="24" selection-end-column="84" />
+            <state relative-caret-position="327">
+              <caret line="146" selection-start-line="146" selection-end-line="146" />
+              <folding>
+                <element signature="e#43#52#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/test_SystemUtil.py">
+        <entry file="file://$PROJECT_DIR$/tests/test_SystemLogger.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1455">
-              <caret line="103" column="8" selection-start-line="103" selection-start-column="8" selection-end-line="103" selection-end-column="8" />
-              <folding>
-                <element signature="e#47#56#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="312">
+              <caret line="71" column="54" lean-forward="true" selection-start-line="71" selection-start-column="54" selection-end-line="71" selection-end-column="54" />
             </state>
           </provider>
         </entry>
@@ -158,6 +143,12 @@
       <find>LOGFILE_MAX_BYTES</find>
       <find>DATE_FORMAT</find>
       <find>LOGFILE_BACKUP_COUNT</find>
+      <find>DOCKER_DIST_DIR</find>
+      <find>levelno</find>
+      <find>_nameToLevel</find>
+      <find>_levelToName</find>
+      <find>test_h</find>
+      <find>cfg</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -175,30 +166,30 @@
         <option value="$PROJECT_DIR$/docs/conf.py" />
         <option value="$PROJECT_DIR$/tests/test_DesignPattern.py" />
         <option value="$PROJECT_DIR$/tests/test_SystemTimestamp.py" />
-        <option value="$PROJECT_DIR$/tests/test_SystemLogger.py" />
         <option value="$PROJECT_DIR$/tests/test_algo.ini" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/xross_common/SystemLogger.py" />
         <option value="$PROJECT_DIR$/tests/test_config.ini" />
         <option value="$PROJECT_DIR$/xross_common/SystemTimestamp.py" />
         <option value="$PROJECT_DIR$/tests/test_SystemUtil/test_config2.ini" />
         <option value="$PROJECT_DIR$/tests/test_SystemUtil.py" />
-        <option value="$PROJECT_DIR$/setup.py" />
-        <option value="$PROJECT_DIR$/xross_common/SystemEnv.py" />
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/.circleci/config.yml" />
         <option value="$PROJECT_DIR$/xross_common/SystemUtil.py" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/tests/test_SystemContext.py" />
         <option value="$PROJECT_DIR$/xross_common/SystemContext.py" />
+        <option value="$PROJECT_DIR$/xross_common/SystemEnv.py" />
+        <option value="$PROJECT_DIR$/setup.py" />
+        <option value="$PROJECT_DIR$/tests/test_SystemLogger.py" />
+        <option value="$PROJECT_DIR$/xross_common/SystemLogger.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="170" />
-    <option name="y" value="90" />
-    <option name="width" value="1069" />
-    <option name="height" value="628" />
+    <option name="x" value="79" />
+    <option name="y" value="23" />
+    <option name="width" value="1276" />
+    <option name="height" value="818" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -253,7 +244,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="SearchEverywhereHistoryKey" value="SystemLogg&#9;FILE&#9;file:///Users/jimako/Documents/Github/alunir/xross_common/xross_common/SystemLogger.py&#10;SystemLogger&#9;FILE&#9;file:///Users/jimako/Documents/Github/alunir/xross_common/xross_common/SystemLogger.py&#10;DesignPa&#9;FILE&#9;file:///Users/jimako/Documents/Github/alunir/xross_common/xross_common/DesignPattern.py" />
+    <property name="SearchEverywhereHistoryKey" value="SystemE&#9;FILE&#9;file:///Users/jimako/Documents/Github/alunir/xross_common/xross_common/SystemEnv.py&#10;testSys&#9;FILE&#9;file:///Users/jimako/Documents/Github/alunir/xross_common/tests/test_SystemLogger.py&#10;SystemLo&#9;FILE&#9;file:///Users/jimako/Documents/Github/alunir/xross_common/xross_common/SystemLogger.py&#10;SystemLogg&#9;FILE&#9;file:///Users/jimako/Documents/Github/alunir/xross_common/xross_common/SystemLogger.py&#10;SystemLogger&#9;FILE&#9;file:///Users/jimako/Documents/Github/alunir/xross_common/xross_common/SystemLogger.py&#10;DesignPa&#9;FILE&#9;file:///Users/jimako/Documents/Github/alunir/xross_common/xross_common/DesignPattern.py" />
     <property name="ignore_missing_gitignore" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
@@ -275,7 +266,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.test_SystemContext">
+  <component name="RunManager" selected="Python tests.all tests">
     <configuration default="true" type="tests" factoryName="Unittests">
       <module name="xross_common" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -300,6 +291,7 @@
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="CONFIG_PATH" value="tests" />
+        <env name="DOCKER_DIST_DIR" value="$PROJECT_DIR$" />
       </envs>
       <option name="SDK_HOME" value="$USER_HOME$/.pyenv/versions/pypy3.5-6.0.0/bin/pypy3" />
       <option name="WORKING_DIRECTORY" value="" />
@@ -318,6 +310,7 @@
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="CONFIG_PATH" value="tests" />
+        <env name="DOCKER_DIST_DIR" value="$PROJECT_DIR$" />
       </envs>
       <option name="SDK_HOME" value="$USER_HOME$/.pyenv/versions/pypy3.5-6.0.0/bin/pypy3" />
       <option name="WORKING_DIRECTORY" value="" />
@@ -330,12 +323,32 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
+    <configuration name="test_SystemLogger" type="tests" factoryName="Unittests">
+      <module name="xross_common" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="CONFIG_PATH" value="tests" />
+        <env name="DOCKER_DIST_DIR" value="$PROJECT_DIR$" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/.pyenv/versions/pypy3.5-6.0.0/bin/pypy3" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_pattern" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/test_SystemLogger.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
     <configuration name="test_SystemUtil" type="tests" factoryName="Unittests">
       <module name="xross_common" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="CONFIG_PATH" value="tests" />
+        <env name="DOCKER_DIST_DIR" value="$PROJECT_DIR$" />
       </envs>
       <option name="SDK_HOME" value="$USER_HOME$/.pyenv/versions/pypy3.5-6.0.0/bin/pypy3" />
       <option name="WORKING_DIRECTORY" value="" />
@@ -351,6 +364,7 @@
     <list>
       <item itemvalue="Python tests.all tests" />
       <item itemvalue="Python tests.test_SystemUtil" />
+      <item itemvalue="Python tests.test_SystemLogger" />
       <item itemvalue="Python tests.test_SystemContext" />
     </list>
   </component>
@@ -368,48 +382,48 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="test_SystemContext - 2018.11.24 at 08h 25m 24s.xml">
-      <configuration name="test_SystemContext" configurationId="tests" />
+    <history-entry file="test_SystemLogger - 2018.12.12 at 21h 17m 57s.xml">
+      <configuration name="test_SystemLogger" configurationId="tests" />
     </history-entry>
-    <history-entry file="test_SystemContext - 2018.11.24 at 08h 26m 04s.xml">
-      <configuration name="test_SystemContext" configurationId="tests" />
+    <history-entry file="test_SystemLogger - 2018.12.12 at 21h 18m 26s.xml">
+      <configuration name="test_SystemLogger" configurationId="tests" />
     </history-entry>
-    <history-entry file="test_SystemContext - 2018.11.24 at 08h 29m 01s.xml">
-      <configuration name="test_SystemContext" configurationId="tests" />
+    <history-entry file="test_SystemLogger - 2018.12.12 at 21h 19m 06s.xml">
+      <configuration name="test_SystemLogger" configurationId="tests" />
     </history-entry>
-    <history-entry file="test_SystemContext - 2018.11.24 at 08h 34m 24s.xml">
-      <configuration name="test_SystemContext" configurationId="tests" />
+    <history-entry file="test_SystemLogger - 2018.12.12 at 21h 20m 48s.xml">
+      <configuration name="test_SystemLogger" configurationId="tests" />
     </history-entry>
-    <history-entry file="test_SystemContext - 2018.11.24 at 08h 34m 41s.xml">
-      <configuration name="test_SystemContext" configurationId="tests" />
+    <history-entry file="test_SystemLogger - 2018.12.12 at 21h 22m 08s.xml">
+      <configuration name="test_SystemLogger" configurationId="tests" />
     </history-entry>
-    <history-entry file="test_SystemContext - 2018.11.24 at 08h 37m 10s.xml">
-      <configuration name="test_SystemContext" configurationId="tests" />
+    <history-entry file="test_SystemLogger - 2018.12.12 at 21h 22m 29s.xml">
+      <configuration name="test_SystemLogger" configurationId="tests" />
     </history-entry>
-    <history-entry file="test_SystemContext - 2018.11.24 at 08h 37m 13s.xml">
-      <configuration name="test_SystemContext" configurationId="tests" />
+    <history-entry file="test_SystemLogger - 2018.12.12 at 21h 22m 51s.xml">
+      <configuration name="test_SystemLogger" configurationId="tests" />
     </history-entry>
-    <history-entry file="test_SystemContext - 2018.11.24 at 08h 39m 46s.xml">
-      <configuration name="test_SystemContext" configurationId="tests" />
+    <history-entry file="test_SystemLogger - 2018.12.12 at 21h 23m 14s.xml">
+      <configuration name="test_SystemLogger" configurationId="tests" />
     </history-entry>
-    <history-entry file="test_SystemContext - 2018.11.24 at 08h 40m 17s.xml">
-      <configuration name="test_SystemContext" configurationId="tests" />
+    <history-entry file="test_SystemLogger - 2018.12.12 at 21h 23m 25s.xml">
+      <configuration name="test_SystemLogger" configurationId="tests" />
     </history-entry>
-    <history-entry file="test_SystemContext - 2018.11.24 at 08h 40m 33s.xml">
-      <configuration name="test_SystemContext" configurationId="tests" />
+    <history-entry file="test_SystemLogger - 2018.12.12 at 21h 23m 36s.xml">
+      <configuration name="test_SystemLogger" configurationId="tests" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="170" y="90" width="1069" height="628" extended-state="0" />
+    <frame x="79" y="23" width="1276" height="818" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2882181" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22447325" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.4533582" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39925373" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3278237" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39807162" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -519,13 +533,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_SystemLogger.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="48" lean-forward="true" selection-start-line="48" selection-end-line="48" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/test_DesignPattern.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
@@ -537,13 +544,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="3" column="26" lean-forward="true" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/xross_common/SystemLogger.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-698">
-          <caret line="7" column="23" lean-forward="true" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="23" />
         </state>
       </provider>
     </entry>
@@ -596,13 +596,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/xross_common/SystemEnv.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="24" column="84" selection-start-line="24" selection-start-column="84" selection-end-line="24" selection-end-column="84" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/test_SystemUtil.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1455">
@@ -610,60 +603,6 @@
           <folding>
             <element signature="e#47#56#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.circleci/config.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="20" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="105">
-            <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-      <provider editor-type-id="Gfm" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="25" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/setup.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="123">
-          <caret line="20" selection-start-line="20" selection-end-line="20" />
-          <folding>
-            <element signature="e#24#33#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/xross_common/SystemUtil.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="82">
-          <caret line="171" column="52" selection-start-line="171" selection-start-column="52" selection-end-line="171" selection-end-column="52" />
-          <folding>
-            <element signature="e#43#52#0" expanded="true" />
-            <marker date="1542969692436" expanded="true" signature="1384:1385" ph="..." />
-            <marker date="1542969692436" expanded="true" signature="5393:5437" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Library/Caches/PyCharmCE2018.2/python_stubs/392707170/builtins.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="89">
-          <caret line="2417" column="8" selection-start-line="2417" selection-start-column="8" selection-end-line="2417" selection-end-column="8" />
         </state>
       </provider>
     </entry>
@@ -678,10 +617,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="172">
           <caret line="66" column="18" lean-forward="true" selection-start-line="66" selection-start-column="18" selection-end-line="66" selection-end-column="18" />
-          <folding>
-            <marker date="1543016415821" expanded="true" signature="499:529" ph="..." />
-            <marker date="1543016415821" expanded="true" signature="1223:1232" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -689,9 +624,97 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
           <caret line="23" column="32" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/setup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="23" column="11" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="11" />
           <folding>
-            <marker date="1543016451138" expanded="true" signature="673:678" ph="..." />
-            <marker date="1543016451138" expanded="true" signature="925:1071" ph="..." />
+            <element signature="e#24#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="315">
+            <caret line="21" column="3" lean-forward="true" selection-start-line="21" selection-start-column="3" selection-end-line="21" selection-end-column="3" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+      <provider editor-type-id="Gfm" />
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Caches/PyCharmCE2018.2/python_stubs/392707170/builtins.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="89">
+          <caret line="342" column="4" selection-start-line="342" selection-start-column="4" selection-end-line="342" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.circleci/config.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/xross_common/SystemEnv.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="13" column="41" lean-forward="true" selection-start-line="13" selection-start-column="41" selection-end-line="13" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="22" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.pyenv/versions/pypy3.5-6.0.0/site-packages/logutils/testing.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="14" column="8" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/xross_common/SystemUtil.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="327">
+          <caret line="146" selection-start-line="146" selection-end-line="146" />
+          <folding>
+            <element signature="e#43#52#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.pyenv/versions/pypy3.5-6.0.0/lib-python/3/logging/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="136" column="26" lean-forward="true" selection-start-line="136" selection-start-column="26" selection-end-line="136" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_SystemLogger.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="71" column="54" lean-forward="true" selection-start-line="71" selection-start-column="54" selection-end-line="71" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/xross_common/SystemLogger.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="301">
+          <caret line="76" lean-forward="true" selection-start-line="76" selection-end-line="76" />
+          <folding>
+            <element signature="e#224#233#0" expanded="true" />
+            <marker date="1544617425304" expanded="true" signature="2940:3299" ph="..." />
+            <marker date="1544617425304" expanded="true" signature="3559:3564" ph="..." />
           </folding>
         </state>
       </provider>
