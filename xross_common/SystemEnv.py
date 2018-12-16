@@ -24,7 +24,7 @@ class SystemEnv(Enum):
         if ast.literal_eval(os.environ.get("IS_DOCKER", 'False'))\
                 or ast.literal_eval(os.environ.get("CIRCLECI", 'False').capitalize()):
             return SystemEnv.DOCKER
-        if 'pycharm' in sys.argv[0] or 'setup.py' in sys.argv[0]:
+        if 'pycharm' in sys.argv[0] or 'setup.py' in sys.argv[0] or '.pyenv/versions' in sys.executable:
             return SystemEnv.UNITTEST
         # MEMO: SystemEnv.LOCAL on 'make test'
         if ast.literal_eval(os.environ.get("IS_LOCAL", 'False')):
