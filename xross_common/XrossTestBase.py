@@ -49,6 +49,8 @@ class XrossTestBase(unittest.TestCase):
                 raise e
 
     def assertRegexList(self, expected_regex_list, actual_list):
+        if len(actual_list) != len(expected_regex_list):
+            self.fail("Length of lists doesn't match. %s!=%s" % (len(expected_regex_list), len(actual_list)))
         for text, regex in zip(actual_list, expected_regex_list):
             self.assertRegex(text, regex)
 
