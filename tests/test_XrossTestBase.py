@@ -10,8 +10,11 @@ class TestXrossTestBase(XrossTestBase):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-    def test(self):
-        pass
+    def test_assertRegexList_different_length(self):
+        try:
+            self.assertRegexList([], ["hoge"])
+        except Exception as e:
+            self.assertEqual("Length of lists doesn't match. 0!=1", str(e))
 
 
 if __name__ == '__main__':
