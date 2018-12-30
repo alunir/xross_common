@@ -31,7 +31,6 @@ setup(
     license=license,
     install_requires=[
         'logutils==0.3.5',
-        'multiprocessing_logging==0.2.5',
         'python-dateutil==2.6.0',
         'munch==2.1.1',
         'pypandoc==1.4',
