@@ -8,7 +8,6 @@ import logging
 import logging.handlers
 
 from logutils.testing import TestHandler, Matcher
-from multiprocessing_logging import MultiProcessingHandler
 
 from xross_common.SystemUtil import SystemUtil
 
@@ -96,17 +95,8 @@ class SystemLogger(logging.getLoggerClass()):
         if not self.cfg.env.is_unittest() and self.cfg.get_env("IS_OUTPUT_TO_LOGFILE", default=False, type=bool):
             handlers.append(self.setup_file_handler())
 
-        if self.cfg.env.is_real():
-            for i, orig_handler in enumerate(handlers):
-                handler = MultiProcessingHandler(
-                    'mp-handler-{0}'.format(i), sub_handler=orig_handler
-                )
-                self.logger.addHandler(handler)
-            self.logger.info("Initialized SystemLogger for %s with %s MultiProcessingHandler"
-                             % (self.obj_name, len(handlers)))
-        else:
-            for orig_handler in handlers:
-                self.logger.addHandler(orig_handler)
+        for orig_handler in handlers:
+            self.logger.addHandler(orig_handler)
         self.logger.info("Loaded SystemLogger LOGGER_LEVEL:%s" % logging.getLevelName(self.levelno))
 
     def get_logger(self):
