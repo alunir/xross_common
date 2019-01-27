@@ -5,6 +5,8 @@ from xross_common.SystemContext import SystemContext
 from xross_common.SystemLogger import SystemLogger
 from xross_common.XrossTestBase import XrossTestBase
 
+PARAM_KEY = "hoge"
+
 
 class TestSystemContext(XrossTestBase):
     logger, test_handler = SystemLogger("TestSystemContext").get_logger()
@@ -78,9 +80,10 @@ class TestSystemContext(XrossTestBase):
         except AttributeError as ex:
             self.assertEqual("'SystemContext' object has no attribute 'xxx'", str(ex))
 
-    def test_increment(self):
-        PARAM_KEY = "hoge"
+    def test_get_int_fail_unless_set(self):
+        self.assertEqual(None, self.cxt.get_int(PARAM_KEY))
 
+    def test_increment(self):
         # setup
         self.cxt.set({PARAM_KEY: 99})
 
