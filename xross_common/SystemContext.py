@@ -43,7 +43,7 @@ class SystemContext:
         self.context.clear()
 
     def get_int(self, key: str, default: int = None) -> int:
-        if not str(self.get(key)).isdecimal():
+        if not str(self.get(key, 0)).isdecimal():
             raise TypeError("%s is not decimal" % key)
         return self.get(key, default)
 
