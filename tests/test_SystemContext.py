@@ -81,7 +81,20 @@ class TestSystemContext(XrossTestBase):
             self.assertEqual("'SystemContext' object has no attribute 'xxx'", str(ex))
 
     def test_get_int_fail_unless_set(self):
-        self.assertEqual(None, self.cxt.get_int(PARAM_KEY))
+        self.assertEqual(0, self.cxt.get_int(PARAM_KEY))
+
+    def test_get_int_fail_not_decimal(self):
+        self.assertEqual(0, self.cxt.get_int(PARAM_KEY))
+        self.cxt.increment(PARAM_KEY)
+        self.assertEqual(1, self.cxt.get_int(PARAM_KEY))
+
+        self.cxt.set({PARAM_KEY: "a"})
+
+        try:
+            self.cxt.get_int(PARAM_KEY)
+            self.fail()
+        except Exception as e:
+            self.assertEqual("Value:a(Key:hoge) is not decimal", str(e))
 
     def test_increment(self):
         # setup

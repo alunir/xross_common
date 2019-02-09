@@ -42,9 +42,9 @@ class SystemContext:
             delattr(self, conv(k))
         self.context.clear()
 
-    def get_int(self, key: str, default: int = None) -> int:
+    def get_int(self, key: str, default: int = 0) -> int:
         if not str(self.get(key, 0)).isdecimal():
-            raise TypeError("%s is not decimal" % key)
+            raise TypeError("Value:%s(Key:%s) is not decimal" % (self.get(key), key))
         return self.get(key, default)
 
     def increment(self, key: str, delta: int = 1) -> int:
