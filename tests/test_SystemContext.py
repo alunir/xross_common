@@ -98,7 +98,7 @@ class TestSystemContext(XrossTestBase):
 
     def test_increment(self):
         # setup
-        self.cxt.set({PARAM_KEY: 99})
+        self.cxt.set({PARAM_KEY: '99'})
 
         # action
         self.cxt.increment(PARAM_KEY)
