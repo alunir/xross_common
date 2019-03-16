@@ -3,10 +3,8 @@
 
 # TODO: remove docs after enriched docs
 docs/*
-
+.idea/*.xml
 dist/*
 build/*
 **/__pycache__/**
 *egg-info/**
-
-.idea/workspace.xml
