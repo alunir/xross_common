@@ -94,6 +94,13 @@ class TestSystemUtil(XrossTestBase):
         # action/assert
         self.assertEqual(TEST_VALUE_PARAM, self.cfg.get_env(TEST_KEY_PARAM))
 
+    def test_get_envs_prefixed(self):
+        # setup
+        self.test_set_env()
+
+        # action/assert
+        self.assertEqual({TEST_KEY_PARAM: TEST_VALUE_PARAM}, self.cfg.get_envs_prefixed("TEST"))
+
     def test_get_env_from_setenvsh(self):
         # assert
         self.assertFalse(None, self.cfg.get_env("DOCKER_DIST_DIR"))

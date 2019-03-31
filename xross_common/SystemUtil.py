@@ -146,6 +146,13 @@ class SystemUtil(metaclass=Singleton):
                 val = ast.literal_eval(str(val))
         return val
 
+    def get_envs_prefixed(self, prefix: str) -> dict:
+        """
+        :param prefix: keys start with prefix
+        :return: dict
+        """
+        return dict(d for d in os.environ.items() if str(d[0]).startswith(prefix))
+
     @staticmethod
     def get_all_env_for_test():
         """
