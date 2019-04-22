@@ -16,7 +16,6 @@ class XrossTestBase(unittest.TestCase):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.cfg = SystemUtil()
         self._logger.info("XrossTestBase has been loaded.")
 
     def setUp(self):
