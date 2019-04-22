@@ -10,18 +10,20 @@ import logging.handlers
 from logutils.testing import TestHandler, Matcher
 
 from xross_common.SystemUtil import SystemUtil
+from xross_common.SystemEnv import SystemEnv
 
 TRACE_LEVEL_NUM = 5
 VERBOSE_LEVEL_NUM = 15
 
 
 class SystemLogger(logging.getLoggerClass()):
+    env = SystemEnv.create()
+
     def __init__(self, obj_name, level="DEBUG"):
         """
         :param obj_name: str
         """
         super(logging.getLoggerClass(), self).__init__()
-        self.cfg = SystemUtil()
         self.obj_name = str(obj_name)
         # MEMO: self.__class__.__name__ equals the name of the most offspring class.
         self.logger = logging.getLogger(self.obj_name)
@@ -70,8 +72,7 @@ class SystemLogger(logging.getLoggerClass()):
             self.add_custom_logging_level(name, level)
 
         # MEMO: Defining root logger level is essential.
-        logger_level = self.cfg.get_env("LOGGER_LEVEL", default=default_level)
-        self.levelno = logging.getLevelName(logger_level)
+        self.levelno = logging.getLevelName(default_level)
         self.logger.setLevel(self.levelno)
 
         # MEMO: asyncio logger level is always DEBUG.
@@ -92,9 +93,6 @@ class SystemLogger(logging.getLoggerClass()):
         handlers.append(self.setup_stream_handler())
         handlers.append(self.test_handler)
 
-        if not self.cfg.env.is_unittest() and self.cfg.get_env("IS_OUTPUT_TO_LOGFILE", default=False, type=bool):
-            handlers.append(self.setup_file_handler())
-
         for orig_handler in handlers:
             self.logger.addHandler(orig_handler)
         self.logger.info("Loaded SystemLogger LOGGER_LEVEL:%s" % logging.getLevelName(self.levelno))
@@ -106,7 +104,7 @@ class SystemLogger(logging.getLoggerClass()):
         stream_handler = logging.StreamHandler()
 
         prefix = ""
-        if not self.cfg.env.is_real():
+        if not self.env.is_real():
             prefix = "DEMO:"
         format_string = prefix + self.format_string
 
@@ -114,20 +112,6 @@ class SystemLogger(logging.getLoggerClass()):
         stream_handler.setFormatter(logging.Formatter(format_string))
 
         return stream_handler
-
-    def setup_file_handler(self):
-        # see http://www.python.ambitious-engineer.com/archives/725
-        module_dir = self.cfg.get_env("DOCKER_DIST_DIR")
-        logfile_dir = module_dir + '/' + self.cfg.get_env("LOGFILE_PATH", "logs")
-        os.makedirs(logfile_dir, exist_ok=True)
-        if module_dir is None:
-            raise Exception("setenv.sh seems not to be set.")
-        logfile_name = 'latest' + self.cfg.get_env("LOGFILE_NAME_EXT", ".log")
-        file_handler = logging.handlers.WatchedFileHandler(logfile_dir + '/' + logfile_name, mode='a')
-
-        file_handler.setLevel(self.levelno)
-        file_handler.setFormatter(self.formatter)
-        return file_handler
 
     def clear_file_handler(self):
         try:
