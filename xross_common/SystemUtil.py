@@ -5,48 +5,48 @@ import sys
 import ast
 import json
 import configparser
-from munch import Munch
+
+from xross_common.Dotdict import Dotdict
 from xross_common.DesignPattern import Singleton
 from xross_common.SystemEnv import SystemEnv
 from xross_common.SystemContext import SystemContext
 # To avoid the circular reference, SystemLogger cannot be imported. This class is compiled at first.
 
 
-def to_munch(dic):
-    """
-    :param dic: String, String
-    :return: Munch (all keys are converted upper.)
-    """
-    return Munch((k.upper(), v) for k, v in dic.items())
-
-
 def args_parser(lst):
     """
     :param list(String): contains args ex) TEST_MODE=True
-    :return: Munch
+    :return: Dotdict
     """
-    result = dict()
+    result = Dotdict()
     for e in lst:
         if "=" not in e:
             print("The arguments should be obeyed with the map format such as TEST_MODE=True, but was " + e)
             continue
         key, value = e.split("=")
         result.update({key: value})
-    # return Munch(result)
     return result
 
 
 class SystemUtil(metaclass=Singleton):
     env = SystemEnv.create()
     cfg = SystemContext()
+    path = None
     ini_files = []
 
-    def __init__(self):
+    def __init__(self, path=None):
         super().__init__()
-        base_dir = os.path.normpath(os.path.dirname(__file__) + "/../")
-        if self.env.is_local() and not self.is_env("DOCKER_DIST_DIR"):
-            self.set_env("DOCKER_DIST_DIR", base_dir)
-        self.update(os.environ.get("DOCKER_DIST_DIR") + "/" + os.environ.get("CONFIG_PATH"))
+        if path:
+            self.update(path)
+            self.path = path
+        elif self.path:
+            self.update(self.path)
+        else:
+            base_dir = os.path.normpath(os.path.dirname(__file__) + "/../")
+            if self.env.is_local() and not self.is_env("DOCKER_DIST_DIR"):
+                self.set_env("DOCKER_DIST_DIR", base_dir)
+            self.path = os.environ.get("DOCKER_DIST_DIR") + "/" + os.environ.get("CONFIG_PATH")
+            self.update(self.path)
 
     def update(self, full_path):
         cfg_parser = configparser.ConfigParser()
