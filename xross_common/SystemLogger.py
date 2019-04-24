@@ -3,13 +3,11 @@
 # see https://docs.python.jp/3/howto/logging.html
 # see https://docs.python.jp/3/howto/logging-cookbook.html#logging-cookbook
 # see https://pythonhosted.org/logutils/testing.html
-import os
 import logging
 import logging.handlers
 
 from logutils.testing import TestHandler, Matcher
 
-from xross_common.SystemUtil import SystemUtil
 from xross_common.SystemEnv import SystemEnv
 
 TRACE_LEVEL_NUM = 5
