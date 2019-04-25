@@ -32,7 +32,7 @@ class TestSystemContext(XrossTestBase):
         self.test_set()
 
         # action
-        mgr = self.cxt.get("HOGEMANAGER")
+        mgr = self.cxt.get_str("HOGEMANAGER")
 
         # assert
         self.assertEqual("HOGEMANAGER", str(mgr.__name__))
@@ -58,7 +58,7 @@ class TestSystemContext(XrossTestBase):
 
         # assert
         self.assertEqual(result, HOGEMANAGER)
-        self.assertEqual("SystemContext{}", str(self.cxt))
+        self.assertEqual("SystemContext{'debug': True}", str(self.cxt))
 
     def test_clear(self):
         # setup
@@ -76,7 +76,7 @@ class TestSystemContext(XrossTestBase):
 
         # action
         try:
-            self.XXX = self.cxt.get("XXX")
+            self.XXX = self.cxt.get_str("XXX")
         except AttributeError as ex:
             self.assertEqual("'SystemContext' object has no attribute 'xxx'", str(ex))
 
@@ -94,7 +94,7 @@ class TestSystemContext(XrossTestBase):
             self.cxt.get_int(PARAM_KEY)
             self.fail()
         except Exception as e:
-            self.assertEqual("Value:a(Key:hoge) is not decimal", str(e))
+            self.assertEqual("Value:a (Key:hoge) is not decimal", str(e))
 
     def test_increment(self):
         # setup
@@ -104,13 +104,13 @@ class TestSystemContext(XrossTestBase):
         self.cxt.increment(PARAM_KEY)
 
         # assert
-        self.assertEqual(100, self.cxt.get(PARAM_KEY))
+        self.assertEqual(100, self.cxt.get_int(PARAM_KEY))
 
         # action
         self.cxt.increment(PARAM_KEY, 100)
 
         # assert
-        self.assertEqual(200, self.cxt.get(PARAM_KEY))
+        self.assertEqual(200, self.cxt.get_int(PARAM_KEY))
 
 
 class HOGEMANAGER:
