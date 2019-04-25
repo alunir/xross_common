@@ -2,7 +2,6 @@
 """ TestSystemUtil """
 import os
 import sys
-import unittest  # @unittest annotation needs this import.
 
 from xross_common.SystemLogger import SystemLogger
 from xross_common.SystemUtil import SystemUtil, SystemEnv
@@ -18,6 +17,11 @@ class TestSystemUtil(XrossTestBase):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.cfg = SystemUtil()
+
+    def test_skip_load_ini(self):
+        self.cfg = SystemUtil(skip=True)
+
+        self.assertEqual("SystemContext{}", str(self.cfg.get_all_sysprop()))
 
     def test_show_sysprop(self):
         self.cfg.clear_gcfg_for_test()
