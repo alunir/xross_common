@@ -87,7 +87,7 @@ class SystemUtil(metaclass=Singleton):
         """
         if not self.cfg.has(key):
             return None
-        val = self.cfg.get(str(key), default=default)
+        val = self.cfg.get_str(key, default=default)
         if type == dict:
             if "{" in val and "}" in val:
                 val = json.loads(val.replace("'", "\""))
