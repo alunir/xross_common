@@ -31,38 +31,32 @@ def args_parser(lst):
 class SystemUtil(metaclass=Singleton):
     env = SystemEnv.create()
     cfg = SystemContext()
-    path = None
-    ini_files = []
 
-    def __init__(self, path=None):
+    def __init__(self, skip=False):
         super().__init__()
-        if path:
-            self.update(path)
-            self.path = path
-        elif self.path:
-            self.update(self.path)
-        else:
+
+        # argparsing
+        # MEMO: arguments should be override to config.
+        self.cfg.set(args_parser(sys.argv[1:]))
+
+        if not skip:
             base_dir = os.path.normpath(os.path.dirname(__file__) + "/../")
             if self.env.is_local() and not self.is_env("DOCKER_DIST_DIR"):
                 self.set_env("DOCKER_DIST_DIR", base_dir)
-            self.path = os.environ.get("DOCKER_DIST_DIR") + "/" + os.environ.get("CONFIG_PATH")
-            self.update(self.path)
+            self.update(os.environ.get("DOCKER_DIST_DIR") + "/" + os.environ.get("CONFIG_PATH"))
 
     def update(self, full_path):
         cfg_parser = configparser.ConfigParser()
         cfg_path = os.path.normpath(full_path)
-        self.ini_files = [cfg_path + "/" + f for f in os.listdir(cfg_path) if f.endswith(".ini")]
-        if self.ini_files is []:
+        ini_files = [cfg_path + "/" + f for f in os.listdir(cfg_path) if f.endswith(".ini")]
+        if ini_files is []:
             raise ValueError("Failed to load ini files. see cfg_path %s" % cfg_path)
-        cfg_parser.read(self.ini_files)
+        cfg_parser.read(ini_files)
 
         if self.env.is_real():
             self.cfg.set(cfg_parser["DEFAULT_GLOBAL_CONFIG"])
         else:
             self.cfg.set(cfg_parser["TEST_DEFAULT_GLOBAL_CONFIG"])
-
-        # MEMO: arguments should be override to config.
-        self.cfg.set(args_parser(sys.argv[1:]))
 
     def get_sysprop_or_env(self, key, type=str):
         """
