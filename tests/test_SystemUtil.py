@@ -19,7 +19,7 @@ class TestSystemUtil(XrossTestBase):
         self.cfg = SystemUtil()
 
     def test_skip_load_ini(self):
-        self.cfg = SystemUtil(skip=True)
+        self.cfg = SystemUtil()
 
         self.assertEqual("SystemContext{}", str(self.cfg.get_all_sysprop()))
 
@@ -121,11 +121,18 @@ class TestSystemUtil(XrossTestBase):
         self.assertEqual(None, os.environ.get(TEST_KEY_PARAM))
 
     def test_read_config(self):
+        # setup
+        self.cfg.set_sysprop('TEST_READ_CONFIG', "True")
+        self.cfg.set_sysprop('TEST_READ_CONFIG_NUM', "1.0")
+
         # assert
         self.assertEqual("True", self.cfg.get_sysprop_or_env('TEST_READ_CONFIG'))
         self.assertTrue(self.cfg.get_sysprop_or_env('TEST_READ_CONFIG', type=bool))
-        self.assertEqual("True", self.cfg.get_sysprop("TEST_SYSTEM_UTIL.READ_CONFIG"))
-        self.assertTrue(self.cfg.get_sysprop("TEST_SYSTEM_UTIL.READ_CONFIG", type=bool))
+        self.assertEqual(1.0, self.cfg.get_sysprop_or_env('TEST_READ_CONFIG_NUM', type=float))
+        try:
+            self.assertEqual(1, self.cfg.get_sysprop_or_env('TEST_READ_CONFIG_NUM', type=int))
+        except ValueError as e:
+            self.assertEqual("invalid literal for int() with base 10: '1.0'", str(e))
 
     # MEMO: confirming extra picture with the bottom code enabled
     def test_sys_args_and_env(self):
@@ -147,10 +154,6 @@ class TestSystemUtil(XrossTestBase):
         self.assertIsNone(self.cfg.get_env("WRITTEN_NOWHERE"))
         self.assertFalse(self.cfg.get_env("WRITTEN_NOWHERE", default=False, type=bool))
         self.assertFalse(self.cfg.get_env("WRITTEN_NOWHERE", default="False", type=bool))
-
-    def test_update_config2(self):
-        self.cfg.update(os.path.dirname(__file__) + "/test_SystemUtil")
-        self.assertEqual("True", self.cfg.get_sysprop_or_env('TEST_READ_CONFIG2'))
 
 
 if __name__ == '__main__':
