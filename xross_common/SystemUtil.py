@@ -32,31 +32,12 @@ class SystemUtil(metaclass=Singleton):
     env = SystemEnv.create()
     cfg = SystemContext()
 
-    def __init__(self, skip=False):
+    def __init__(self):
         super().__init__()
 
         # argparsing
         # MEMO: arguments should be override to config.
         self.cfg.set(args_parser(sys.argv[1:]))
-
-        if not skip:
-            base_dir = os.path.normpath(os.path.dirname(__file__) + "/../")
-            if self.env.is_local() and not self.is_env("DOCKER_DIST_DIR"):
-                self.set_env("DOCKER_DIST_DIR", base_dir)
-            self.update(os.environ.get("DOCKER_DIST_DIR") + "/" + os.environ.get("CONFIG_PATH"))
-
-    def update(self, full_path):
-        cfg_parser = configparser.ConfigParser()
-        cfg_path = os.path.normpath(full_path)
-        ini_files = [cfg_path + "/" + f for f in os.listdir(cfg_path) if f.endswith(".ini")]
-        if ini_files is []:
-            raise ValueError("Failed to load ini files. see cfg_path %s" % cfg_path)
-        cfg_parser.read(ini_files)
-
-        if self.env.is_real():
-            self.cfg.set(cfg_parser["DEFAULT_GLOBAL_CONFIG"])
-        else:
-            self.cfg.set(cfg_parser["TEST_DEFAULT_GLOBAL_CONFIG"])
 
     def get_sysprop_or_env(self, key, type=str):
         """
@@ -78,6 +59,16 @@ class SystemUtil(metaclass=Singleton):
                 result = ast.literal_eval(self.get_env(str(key)))
             else:
                 result = ast.literal_eval(self.get_sysprop(str(key)))
+        if type == int:
+            if self.get_sysprop(str(key)) is None:
+                result = int(self.get_env(str(key)))
+            else:
+                result = int(self.get_sysprop(str(key)))
+        if type == float:
+            if self.get_sysprop(str(key)) is None:
+                result = float(self.get_env(str(key)))
+            else:
+                result = float(self.get_sysprop(str(key)))
         return result
 
     def get_sysprop(self, key, default=None, type=str):
@@ -97,6 +88,10 @@ class SystemUtil(metaclass=Singleton):
                 val = val.replace(" ", "").split(",")
         if type == bool:
             val = ast.literal_eval(val)
+        if type == int:
+            val = int(val)
+        if type == float:
+            val = float(val)
         return val
 
     def get_all_sysprop(self):
