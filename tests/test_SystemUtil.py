@@ -105,6 +105,15 @@ class TestSystemUtil(XrossTestBase):
         # action/assert
         self.assertEqual({TEST_KEY_PARAM: TEST_VALUE_PARAM}, self.cfg.get_envs_prefixed("TEST"))
 
+    def test_set_get_env_dict(self):
+        # setup
+        TEST_KEY_PARAM_DICT = "FRASHCRASHER_1.DELTA_PRICE"
+        TEST_VALUE_PARAM_DICT = "{'MCO/BTC':0.00002,'BNB/BTC':0.000001}"
+        self.cfg.set_env(TEST_KEY_PARAM_DICT, TEST_VALUE_PARAM_DICT)
+
+        # action/assert
+        self.assertEqual({'MCO/BTC': 0.00002, 'BNB/BTC': 0.000001}, self.cfg.get_env(TEST_KEY_PARAM_DICT, type=dict))
+
     def test_get_env_from_setenvsh(self):
         # assert
         self.assertFalse(None, self.cfg.get_env("DOCKER_DIST_DIR"))

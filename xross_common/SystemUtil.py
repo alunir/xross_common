@@ -79,20 +79,7 @@ class SystemUtil(metaclass=Singleton):
         if not self.cfg.has(key):
             return None
         val = self.cfg.get_str(key, default=default)
-        if type == dict:
-            if "{" in val and "}" in val:
-                val = json.loads(val.replace("'", "\""))
-            if "," in val:
-                if "[" == val[0] and "]" == val[-1]:
-                    val = val[1:-2]
-                val = val.replace(" ", "").split(",")
-        if type == bool:
-            val = ast.literal_eval(val)
-        if type == int:
-            val = int(val)
-        if type == float:
-            val = float(val)
-        return val
+        return self.__eval(val, type)
 
     def get_all_sysprop(self):
         """
@@ -128,11 +115,26 @@ class SystemUtil(metaclass=Singleton):
         :return: void
         """
         val = os.environ.get(str(key), default)
+        return self.__eval(val, type)
+
+    @staticmethod
+    def __eval(val, type):
+        if type == dict:
+            if "{" in val and "}" in val:
+                val = json.loads(val.replace("'", "\""))
+            if "," in val:
+                if "[" == val[0] and "]" == val[-1]:
+                    val = val[1:-2]
+                val = val.replace(" ", "").split(",")
         if type == bool:
             if val is None:
                 val = False
             else:
                 val = ast.literal_eval(str(val))
+        if type == int:
+            val = int(val)
+        if type == float:
+            val = float(val)
         return val
 
     def get_envs_prefixed(self, prefix: str) -> dict:
