@@ -21,7 +21,7 @@ class SystemTimestamp:
             self.timestamp = args
 
     def reload(self):
-        now = datetime.now(dateutil.tz.tzlocal()).astimezone(tz=timezone.utc)
+        now = datetime.utcnow()
         self.timestamp = (now.year, now.month, now.day, now.hour, now.minute, now.second, now.microsecond)
 
     def to_datetime(self):
