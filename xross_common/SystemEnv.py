@@ -9,11 +9,11 @@ from enum import Enum
 class SystemEnv(Enum):
     # Running on the server
     PROD = 'prod'
-    # Running on Docker Container
+    # Running on staging
     DOCKER = 'docker'
-    # Running by 'make test' on the local
+    # Running on local
     LOCAL = 'local'
-    # Running by unittests on the local
+    # Running by unittests
     UNITTEST = 'unittest'
     UNKNOWN = 'unknown'
 
