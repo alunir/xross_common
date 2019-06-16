@@ -19,19 +19,17 @@ class SystemEnv(Enum):
 
     @staticmethod
     def create():
-        if "REAL=True" in sys.argv:
-            return SystemEnv.PROD
-        if ast.literal_eval(os.environ.get("IS_DOCKER", 'False'))\
-                or ast.literal_eval(os.environ.get("CIRCLECI", 'False').capitalize()):
-            return SystemEnv.DOCKER
-        if 'pycharm' in sys.argv[0] or 'setup.py' in sys.argv[0] or '.pyenv/versions' in sys.executable:
+        if ast.literal_eval(os.environ.get("IS_UNITTEST", 'False')) \
+                or 'pycharm' in sys.argv[0] or 'setup.py' in sys.argv[0] or '.pyenv/versions' in sys.executable:
             return SystemEnv.UNITTEST
-        # MEMO: SystemEnv.LOCAL on 'make test'
-        if ast.literal_eval(os.environ.get("IS_LOCAL", 'False')):
+        elif ast.literal_eval(os.environ.get("IS_LOCAL", 'False')):
             return SystemEnv.LOCAL
-        # TODO: Jupyter notebook is used for investigating API as prod, but was UNKNOWN.
-        # or 'ipykernel_launcher' in sys.argv[0]:
-        return SystemEnv.UNKNOWN
+        elif ast.literal_eval(os.environ.get("IS_DOCKER", 'False')):
+            return SystemEnv.DOCKER
+        elif "REAL=True" in sys.argv:
+            return SystemEnv.PROD
+        else:
+            return SystemEnv.UNKNOWN
 
     def is_real(self):
         return self is SystemEnv.PROD
