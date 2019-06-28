@@ -30,6 +30,7 @@ setup(
     dependency_links=[],
     license=license,
     install_requires=[
+        'logutils==0.3.5',
         'python-dateutil==2.6.0',
         'pykka==2.0.0',
         'oslash==0.5.1',
