@@ -21,7 +21,7 @@ with open(".env") as f:
 
 setup(
     name='xross_common',
-    version='1.1.4',
+    version='1.1.5',
     description='Common library for alunir',
     long_description=long_description,
     author='jimako1989',
@@ -32,7 +32,8 @@ setup(
     install_requires=[
         'logutils==0.3.5',
         'python-dateutil==2.6.0',
-        'munch==2.1.1',
+        'pykka==2.0.0',
+        'oslash==0.5.1',
         'pypandoc==1.4',
         'sphinx'
     ],

@@ -1,9 +1,11 @@
 
 __all__ = [
     'BaseError',
+    'NoMarketDataException',
     'UninitializedImageError',
     'UniqueOrderIdValidation',
-    'InvalidBrokerMarketImage'
+    'InvalidBrokerMarketImage',
+    'SystemThrottleError'
 ]
 
 # -----------------------------------------------------------------------------
@@ -31,6 +33,11 @@ class UniqueOrderIdValidation(BaseError):
 
 class InvalidBrokerMarketImage(BaseError):
     """"Raised when a broker couldn't initialize the market image"""
+    pass
+
+
+class SystemThrottleError(BaseError):
+    """"Raised when the throttle error is detected"""
     pass
 
 # =============================================================================
