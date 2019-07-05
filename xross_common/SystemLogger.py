@@ -66,7 +66,7 @@ class SystemLogger(logging.getLoggerClass()):
 
         # MEMO: define custom logging levels
         for name, level in [('TRACE', TRACE_LEVEL_NUM), ('VERBOSE', VERBOSE_LEVEL_NUM)]:
-            self.add_custom_logging_level(name, level)
+            logging.addLevelName(level, name)
 
         # MEMO: Defining root logger level is essential.
         self.levelno = logging.getLevelName(default_level)
@@ -74,15 +74,6 @@ class SystemLogger(logging.getLoggerClass()):
 
         # MEMO: asyncio logger level is always DEBUG.
         logging.getLogger('asyncio').setLevel(logging.DEBUG)
-
-    def add_custom_logging_level(self, name, level):
-        """
-        :param name: str
-        :param level: str
-        :return: void
-        """
-        logging.addLevelName(level, name)
-        setattr(self, name.lower(), level)
 
     def register_handlers(self):
         # MEMO: In util module, SystemLogger will be failed in the day after start the process.
