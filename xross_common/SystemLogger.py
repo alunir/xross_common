@@ -24,6 +24,7 @@ class SystemLogger(logging.getLoggerClass()):
         self.propagate = True
         self.handlers = []
         self.disabled = False
+        self._cache = []
 
         self.format_string = "%(asctime)s [" + self.name + ":%(levelname)s] (%(processName)s) %(message)s"
         self.formatter = logging.Formatter(self.format_string)
