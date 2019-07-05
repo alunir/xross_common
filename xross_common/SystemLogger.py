@@ -17,16 +17,15 @@ VERBOSE_LEVEL_NUM = 15
 class SystemLogger(logging.getLoggerClass()):
     env = SystemEnv.create()
 
-    def __init__(self, obj_name, level="DEBUG"):
-        """
-        :param obj_name: str
-        """
+    def __init__(self, name, level="DEBUG"):
         super(logging.getLoggerClass(), self).__init__()
-        self.obj_name = str(obj_name)
-        # MEMO: self.__class__.__name__ equals the name of the most offspring class.
-        self.logger = logging.getLogger(self.obj_name)
+        self.name = str(name)
+        self.parent = None
+        self.propagate = True
+        self.handlers = []
+        self.disabled = False
 
-        self.format_string = "%(asctime)s [" + self.obj_name + ":%(levelname)s] (%(processName)s) %(message)s"
+        self.format_string = "%(asctime)s [" + self.name + ":%(levelname)s] (%(processName)s) %(message)s"
         self.formatter = logging.Formatter(self.format_string)
         self.test_handler = TestHandler(Matcher())
 
@@ -36,12 +35,12 @@ class SystemLogger(logging.getLoggerClass()):
         self.register_handlers()
 
     def trace(self, message, *args, **kws):
-        if self.logger.isEnabledFor(TRACE_LEVEL_NUM):
-            self.logger._log(TRACE_LEVEL_NUM, message, args, **kws)
+        if self.isEnabledFor(TRACE_LEVEL_NUM):
+            self._log(TRACE_LEVEL_NUM, message, args, **kws)
 
     def verbose(self, message, *args, **kws):
-        if self.logger.isEnabledFor(VERBOSE_LEVEL_NUM):
-            self.logger._log(VERBOSE_LEVEL_NUM, message, args, **kws)
+        if self.isEnabledFor(VERBOSE_LEVEL_NUM):
+            self._log(VERBOSE_LEVEL_NUM, message, args, **kws)
 
     def set_loglevel(self, default_level):
         """
@@ -71,7 +70,7 @@ class SystemLogger(logging.getLoggerClass()):
 
         # MEMO: Defining root logger level is essential.
         self.levelno = logging.getLevelName(default_level)
-        self.logger.setLevel(self.levelno)
+        self.setLevel(self.levelno)
 
         # MEMO: asyncio logger level is always DEBUG.
         logging.getLogger('asyncio').setLevel(logging.DEBUG)
@@ -83,20 +82,19 @@ class SystemLogger(logging.getLoggerClass()):
         :return: void
         """
         logging.addLevelName(level, name)
-        setattr(self.logger, name.lower(), getattr(self, name.lower()))
+        setattr(self, name.lower(), level)
 
     def register_handlers(self):
         # MEMO: In util module, SystemLogger will be failed in the day after start the process.
-        handlers = list()
-        handlers.append(self.setup_stream_handler())
-        handlers.append(self.test_handler)
+        self.handlers.append(self.setup_stream_handler())
+        self.handlers.append(self.test_handler)
 
-        for orig_handler in handlers:
-            self.logger.addHandler(orig_handler)
-        self.logger.info("Loaded SystemLogger LOGGER_LEVEL:%s" % logging.getLevelName(self.levelno))
+        for orig_handler in self.handlers:
+            self.addHandler(orig_handler)
+        self.info("Loaded SystemLogger LOGGER_LEVEL:%s" % logging.getLevelName(self.levelno))
 
     def get_logger(self):
-        return self.logger, self.test_handler
+        return self, self.test_handler
 
     def setup_stream_handler(self):
         stream_handler = logging.StreamHandler()
@@ -113,6 +111,6 @@ class SystemLogger(logging.getLoggerClass()):
 
     def clear_file_handler(self):
         try:
-            self.logger.removeHandler(self.file_handler)
+            self.removeHandler(self.file_handler)
         except AttributeError:
             AttributeError("file_handler is not found.")
