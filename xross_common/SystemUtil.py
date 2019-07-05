@@ -119,6 +119,10 @@ class SystemUtil(metaclass=Singleton):
 
     @staticmethod
     def __eval(val, type):
+        if type == list:
+            if "[" in val and "]" in val:
+                val = val.replace("[", "").replace("]", "")
+            val = val.split(",")
         if type == dict:
             if "{" in val and "}" in val:
                 val = json.loads(val.replace("'", "\""))

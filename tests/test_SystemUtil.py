@@ -48,13 +48,13 @@ class TestSystemUtil(XrossTestBase):
         # setup
         TEST_KEY_PARAM_DICT = "FRASHCRASHER_1.DELTA_PRICE"
         TEST_VALUE_PARAM_DICT = "{'MCO/BTC':0.00002,'BNB/BTC':0.000001}"
-        self.sysprop = self.cfg.get_all_sysprop()
+        sysprop = self.cfg.get_all_sysprop()
 
         # action
         self.cfg.set_sysprop(TEST_KEY_PARAM_DICT, TEST_VALUE_PARAM_DICT)
 
         # assert
-        self.assertEqual(TEST_VALUE_PARAM_DICT, self.sysprop.get(TEST_KEY_PARAM_DICT))
+        self.assertEqual(TEST_VALUE_PARAM_DICT, sysprop.get(TEST_KEY_PARAM_DICT))
 
         # action/assert
         self.assertEqual({'MCO/BTC': 0.00002, 'BNB/BTC': 0.000001}, self.cfg.get_sysprop(TEST_KEY_PARAM_DICT, type=dict))
@@ -63,16 +63,31 @@ class TestSystemUtil(XrossTestBase):
         # setup
         TEST_KEY_PARAM_PACK = "FRASHCRASHER_1.INTERVALS"
         TEST_VALUE_PARAM_PACK = "5,1"
-        self.sysprop = self.cfg.get_all_sysprop()
+        sysprop = self.cfg.get_all_sysprop()
 
         # action
         self.cfg.set_sysprop(TEST_KEY_PARAM_PACK, TEST_VALUE_PARAM_PACK)
 
         # assert
-        self.assertEqual(TEST_VALUE_PARAM_PACK, self.sysprop.get(TEST_KEY_PARAM_PACK))
+        self.assertEqual(TEST_VALUE_PARAM_PACK, sysprop.get(TEST_KEY_PARAM_PACK))
 
         # action/assert
         self.assertEqual(['5', '1'], self.cfg.get_sysprop(TEST_KEY_PARAM_PACK, type=dict))
+
+    def test_set_get_sysprop_list(self):
+        # setup
+        TEST_KEY_PARAM_LIST = "FRASHCRASHER_1.INTERVALS"
+        TEST_VALUE_PARAM_LIST = "[5,1]"
+        sysprop = self.cfg.get_all_sysprop()
+
+        # action
+        self.cfg.set_sysprop(TEST_KEY_PARAM_LIST, TEST_VALUE_PARAM_LIST)
+
+        # assert
+        self.assertEqual(TEST_VALUE_PARAM_LIST, sysprop.get(TEST_KEY_PARAM_LIST))
+
+        # action/assert
+        self.assertEqual(['5', '1'], self.cfg.get_sysprop(TEST_KEY_PARAM_LIST, type=list))
 
     def test_remove_sysprop(self):
         self.test_get_sysprop()
