@@ -18,13 +18,7 @@ class SystemLogger(logging.getLoggerClass()):
     env = SystemEnv.create()
 
     def __init__(self, name, level="DEBUG"):
-        super(logging.getLoggerClass(), self).__init__()
-        self.name = str(name)
-        self.parent = None
-        self.propagate = True
-        self.handlers = []
-        self.disabled = False
-        self._cache = []
+        logging.getLoggerClass().__init__(self, name, level=level)
 
         self.format_string = "%(asctime)s [" + self.name + ":%(levelname)s] (%(processName)s) %(message)s"
         self.formatter = logging.Formatter(self.format_string)
