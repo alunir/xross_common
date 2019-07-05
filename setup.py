@@ -21,7 +21,7 @@ with open(".env") as f:
 
 setup(
     name='xross_common',
-    version='1.1.5',
+    version='1.1.6',
     description='Common library for alunir',
     long_description=long_description,
     author='jimako1989',
