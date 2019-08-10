@@ -3,6 +3,7 @@
 # see https://docs.python.jp/3/howto/logging.html
 # see https://docs.python.jp/3/howto/logging-cookbook.html#logging-cookbook
 # see https://pythonhosted.org/logutils/testing.html
+import os
 import logging
 import logging.handlers
 
@@ -17,7 +18,8 @@ VERBOSE_LEVEL_NUM = 15
 class SystemLogger(logging.getLoggerClass()):
     env = SystemEnv.create()
 
-    def __init__(self, name, level="DEBUG"):
+    def __init__(self, name):
+        level = os.environ.get("LOGGER_LEVEL", "DEBUG")
         logging.getLoggerClass().__init__(self, name, level=level)
 
         self.format_string = "%(asctime)s [" + self.name + ":%(levelname)s] (%(processName)s) %(message)s"

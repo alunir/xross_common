@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 """ TestSystemLogger """
+import os
 import multiprocessing
 
 from xross_common.SystemLogger import SystemLogger
@@ -59,7 +60,10 @@ class TestSystemLogger(XrossTestBase):
         )
 
     def test_custom_log_set_logger_level(self):
-        logger, test_handler = SystemLogger("TestSystemLogger", level="TRACE").get_logger()
+        # set up
+        os.environ["LOGGER_LEVEL"] = "TRACE"
+
+        logger, test_handler = SystemLogger("TestSystemLogger").get_logger()
         logger.trace("TRACE log is available.")
 
         self.assertEqual(
@@ -74,6 +78,9 @@ class TestSystemLogger(XrossTestBase):
              'VERBOSE log is available.'],
             test_handler.formatted
         )
+
+        # teardown
+        os.environ["LOGGER_LEVEL"] = "DEBUG"
 
 
 if __name__ == '__main__':
